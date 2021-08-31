@@ -42,7 +42,6 @@ document.querySelector(".celsius").addEventListener("click", convertCelsius);
 
 //City Name & Todays Temperature & Icons & Sunrise & Sunset
 function showWeatherToday(response) {
-  console.log(response);
   let weatherCity = `${Math.round(response.data.main.temp)}°C`;
 
   document.querySelector("#temperature-today").innerHTML = `${weatherCity}`;
