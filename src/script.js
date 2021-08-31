@@ -42,6 +42,7 @@ document.querySelector(".celsius").addEventListener("click", convertCelsius);
 
 //City Name & Todays Temperature & Icons & Sunrise & Sunset
 function showWeatherToday(response) {
+  console.log(response);
   let weatherCity = `${Math.round(response.data.main.temp)}°C`;
 
   document.querySelector("#temperature-today").innerHTML = `${weatherCity}`;
@@ -52,6 +53,7 @@ function showWeatherToday(response) {
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 
   let sunriseTime = new Date(response.data.sys.sunrise * 1000);
   let hourSunrise = sunriseTime.getHours(sunriseTime);
