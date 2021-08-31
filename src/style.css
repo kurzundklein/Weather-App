@@ -67,6 +67,10 @@ button:hover {
 .emoji {
   font-size: 35px;
 }
+#sunriseTime,
+#sunsetTime {
+  font-size: 24px;
+}
 .coder {
   font-family: "PT Mono", monospace;
   text-align: right;
