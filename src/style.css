@@ -17,7 +17,7 @@ input:hover {
 }
 h1 {
   text-align: center;
-  padding: 30px;
+  padding: 10px;
   font-family: "Comfortaa", cursive;
 }
 #city {
@@ -44,7 +44,6 @@ button {
   border: none;
   background: #fff;
   text-align: center;
-  padding: 5px;
   width: 50px;
 }
 button:hover {
@@ -62,19 +61,25 @@ button:hover {
 .sunrise,
 .sunset {
   background: #fff;
-  padding: 10px 20px;
+  padding: 10px;
   margin: 10px;
   text-align: center;
-  line-height: 2.5;
+  line-height: 2;
 }
-.today,
-.coming-days {
+.today {
   font-weight: bold;
 }
-.temperature,
-.time {
+.temperature-today,
+.time,
+.details {
   font-weight: normal;
   font-size: 24px;
+}
+#description {
+  text-transform: capitalize;
+}
+img {
+  height: 75px;
 }
 .emoji {
   font-size: 35px;

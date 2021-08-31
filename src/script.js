@@ -21,10 +21,12 @@ if (minutes < 10) {
   minutes = `0${minutes}`;
 }
 
-document.querySelector("#today").innerHTML = `Today, ${day} ${hour}:${minutes}`;
+document.querySelector("#today").innerHTML = `${day}, ${hour}:${minutes}`;
 
 //City Name & Todays Temperature & Icons & Sunrise & Sunset
 function showWeatherToday(response) {
+  console.log(response);
+
   document.querySelector("#city").innerHTML = `${response.data.name}`;
 
   temperatureCelsius = response.data.main.temp;
@@ -38,6 +40,16 @@ function showWeatherToday(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  document.querySelector("#windSpeed").innerHTML = `${Math.round(
+    response.data.wind.speed
+  )} km/h`;
+  document.querySelector(
+    "#humidity"
+  ).innerHTML = `${response.data.main.humidity}%`;
+  document.querySelector(
+    "#description"
+  ).innerHTML = `${response.data.weather[0].description}`;
 
   let sunriseTime = new Date(response.data.sys.sunrise * 1000);
   let hourSunrise = sunriseTime.getHours(sunriseTime);
