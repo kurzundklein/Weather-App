@@ -42,8 +42,6 @@ document.querySelector(".celsius").addEventListener("click", convertCelsius);
 
 //City Name & Todays Temperature & Icons & Sunrise & Sunset
 function showWeatherToday(response) {
-  console.log(response);
-
   let weatherCity = `${Math.round(response.data.main.temp)}°C`;
 
   document.querySelector("#temperature-today").innerHTML = `${weatherCity}`;
@@ -81,6 +79,19 @@ function showWeatherToday(response) {
     "#sunsetTime"
   ).innerHTML = `${hourSunset}:${minutesSunset}`;
 }
+
+//Default City
+function showDefaultCity() {
+  let cityInput = "Meran";
+  let unitTemperature = "metric";
+  let apiKey = "0f129b9a789d17793d44ec3aef53281f";
+
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&units=${unitTemperature}&appid=${apiKey}`;
+
+  axios.get(`${apiUrl}`).then(showWeatherToday);
+}
+
+showDefaultCity();
 
 //Search City
 function showCity(event) {
