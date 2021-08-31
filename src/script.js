@@ -46,6 +46,32 @@ function showWeatherToday(response) {
 
   document.querySelector("#temperature-today").innerHTML = `${weatherCity}`;
   document.querySelector("#city").innerHTML = `${response.data.name}`;
+
+  let sunriseTime = new Date(response.data.sys.sunrise * 1000);
+  let hourSunrise = sunriseTime.getHours(sunriseTime);
+  if (hourSunrise < 10) {
+    hourSunrise = `0${hourSunrise}`;
+  }
+  let minutesSunrise = sunriseTime.getMinutes(sunriseTime);
+  if (minutesSunrise < 10) {
+    minutesSunrise = `0${minutesSunrise}`;
+  }
+  document.querySelector(
+    "#sunriseTime"
+  ).innerHTML = `${hourSunrise}:${minutesSunrise}`;
+
+  let sunsetTime = new Date(response.data.sys.sunset * 1000);
+  let hourSunset = sunsetTime.getHours(sunsetTime);
+  if (hourSunset < 10) {
+    hourSunset = `0${hourSunset}`;
+  }
+  let minutesSunset = sunsetTime.getMinutes(sunsetTime);
+  if (minutesSunset < 10) {
+    minutesSunset = `0${minutesSunset}`;
+  }
+  document.querySelector(
+    "#sunsetTime"
+  ).innerHTML = `${hourSunset}:${minutesSunset}`;
 }
 
 //Search City
@@ -63,19 +89,19 @@ function showCity(event) {
 document.querySelector("form").addEventListener("submit", showCity);
 
 //Current location
+function showLatitudeLongitude(positionLatitudeLongitude) {
+  let currentLatitude = positionLatitudeLongitude.coords.latitude;
+  let currentLongitude = positionLatitudeLongitude.coords.longitude;
+  let unitTemperature = "metric";
+  let apiKey = "0f129b9a789d17793d44ec3aef53281f";
+
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${currentLatitude}&lon=${currentLongitude}&units=${unitTemperature}&appid=${apiKey}`;
+
+  axios.get(`${apiUrl}`).then(showWeatherToday);
+}
+
 function showCurrentCity(event) {
   event.preventDefault();
-
-  function showLatitudeLongitude(positionLatitudeLongitude) {
-    let currentLatitude = positionLatitudeLongitude.coords.latitude;
-    let currentLongitude = positionLatitudeLongitude.coords.longitude;
-    let unitTemperature = "metric";
-    let apiKey = "0f129b9a789d17793d44ec3aef53281f";
-
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${currentLatitude}&lon=${currentLongitude}&units=${unitTemperature}&appid=${apiKey}`;
-
-    axios.get(`${apiUrl}`).then(showWeatherToday);
-  }
 
   navigator.geolocation.getCurrentPosition(showLatitudeLongitude);
 }
