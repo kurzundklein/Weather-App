@@ -77,8 +77,6 @@ function showDefaultCity() {
   axios.get(`${apiUrl}`).then(showWeatherToday);
 }
 
-showDefaultCity();
-
 //Search City
 function showCity(event) {
   event.preventDefault();
@@ -120,19 +118,27 @@ function convertFahrenheit(event) {
   document.querySelector("#temperature-today").innerHTML = `${Math.round(
     fahrenheitTemperature
   )} °F`;
+
+  fahrenheitButton.classList.add("active");
+  celsiusButton.classList.remove("active");
 }
 
-document
-  .querySelector(".fahrenheit")
-  .addEventListener("click", convertFahrenheit);
+let fahrenheitButton = document.querySelector(".fahrenheit");
+fahrenheitButton.addEventListener("click", convertFahrenheit);
 
 function convertCelsius(event) {
   event.preventDefault;
   document.querySelector("#temperature-today").innerHTML = `${Math.round(
     temperatureCelsius
   )} °C`;
+
+  celsiusButton.classList.add("active");
+  fahrenheitButton.classList.remove("active");
 }
 
-document.querySelector(".celsius").addEventListener("click", convertCelsius);
+let celsiusButton = document.querySelector(".celsius");
+celsiusButton.addEventListener("click", convertCelsius);
 
+// Basics
 let temperatureCelsius = null;
+showDefaultCity();
