@@ -23,29 +23,14 @@ if (minutes < 10) {
 
 document.querySelector("#today").innerHTML = `Today, ${day} ${hour}:${minutes}`;
 
-//Fahrenheit & Celsius
-function convertFahrenheit(event) {
-  event.preventDefault;
-  document.querySelector("#temperature-today").innerHTML = "66 °F";
-}
-
-document
-  .querySelector(".fahrenheit")
-  .addEventListener("click", convertFahrenheit);
-
-function convertCelsius(event) {
-  event.preventDefault;
-  document.querySelector("#temperature-today").innerHTML = "17 °C";
-}
-
-document.querySelector(".celsius").addEventListener("click", convertCelsius);
-
 //City Name & Todays Temperature & Icons & Sunrise & Sunset
 function showWeatherToday(response) {
-  let weatherCity = `${Math.round(response.data.main.temp)}°C`;
-
-  document.querySelector("#temperature-today").innerHTML = `${weatherCity}`;
   document.querySelector("#city").innerHTML = `${response.data.name}`;
+
+  temperatureCelsius = response.data.main.temp;
+  document.querySelector("#temperature-today").innerHTML = `${Math.round(
+    temperatureCelsius
+  )} °C`;
 
   let iconElement = document.querySelector(".icon-today");
   iconElement.setAttribute(
@@ -127,3 +112,27 @@ function showCurrentCity(event) {
 }
 
 document.querySelector(".current").addEventListener("click", showCurrentCity);
+
+//Fahrenheit & Celsius
+function convertFahrenheit(event) {
+  event.preventDefault;
+  let fahrenheitTemperature = (temperatureCelsius * 9) / 5 + 32;
+  document.querySelector("#temperature-today").innerHTML = `${Math.round(
+    fahrenheitTemperature
+  )} °F`;
+}
+
+document
+  .querySelector(".fahrenheit")
+  .addEventListener("click", convertFahrenheit);
+
+function convertCelsius(event) {
+  event.preventDefault;
+  document.querySelector("#temperature-today").innerHTML = `${Math.round(
+    temperatureCelsius
+  )} °C`;
+}
+
+document.querySelector(".celsius").addEventListener("click", convertCelsius);
+
+let temperatureCelsius = null;

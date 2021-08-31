@@ -30,21 +30,22 @@
             class="type-city col-8"
             autofocus
             id="city-input"
+            autocomplete="off"
           />
           <input type="submit" value="search" class="col search" />
           <input type="submit" value="current" class="col current" />
         </div>
       </form>
       <div class="application">
-        <h1>The weather in beautiful <span id="city">Vienna</span> is</h1>
+        <h1>The weather in beautiful <span id="city"></span> is</h1>
         <div class="buttons">
           <button class="celsius">°C</button>
           <button class="fahrenheit">°F</button>
         </div>
         <div class="row">
           <div class="col-3 today">
-            <div id="today">Today</div>
-            <div class="temperature" id="temperature-today">17 °C</div>
+            <div id="today"></div>
+            <div class="temperature" id="temperature-today"></div>
             <img src="" alt="" class="icon-today" />
           </div>
           <div class="col coming-days">
@@ -80,12 +81,12 @@
         <div class="row">
           <div class="col sunrise">
             The sun rises at
-            <div id="sunriseTime">05:00</div>
+            <div id="sunriseTime"></div>
             in your current time zone.
           </div>
           <div class="col sunset">
             The sun sets at
-            <div id="sunsetTime">20:58</div>
+            <div id="sunsetTime"></div>
             in your current time zone.
           </div>
         </div>
