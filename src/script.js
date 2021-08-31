@@ -13,7 +13,7 @@ let day = days[now.getDay()];
 
 let hour = now.getHours();
 if (hour < 10) {
-  hour = `0${hours}`;
+  hour = `0${hour}`;
 }
 
 let minutes = now.getMinutes();

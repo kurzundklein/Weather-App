@@ -20,6 +20,9 @@ h1 {
   padding: 30px;
   font-family: "Comfortaa", cursive;
 }
+#city {
+  text-transform: capitalize;
+}
 .buttons {
   display: flex;
   align-items: center;
