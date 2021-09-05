@@ -25,8 +25,6 @@ document.querySelector("#today").innerHTML = `${day}, ${hour}:${minutes}`;
 
 //City Name & Todays Temperature & Icons & Sunrise & Sunset
 function showWeatherToday(response) {
-  console.log(response);
-
   document.querySelector("#city").innerHTML = `${response.data.name}`;
 
   temperatureCelsius = response.data.main.temp;
@@ -77,15 +75,12 @@ function showWeatherToday(response) {
     "#sunsetTime"
   ).innerHTML = `${hourSunset}:${minutesSunset}`;
 
-  displayForecast();
+  getForecast(response.data.coord);
 }
 
 //Default City
 function showDefaultCity() {
   let cityInput = "Meran";
-  let unitTemperature = "metric";
-  let apiKey = "0f129b9a789d17793d44ec3aef53281f";
-
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&units=${unitTemperature}&appid=${apiKey}`;
 
   axios.get(`${apiUrl}`).then(showWeatherToday);
@@ -95,9 +90,6 @@ function showDefaultCity() {
 function showCity(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#city-input");
-  let unitTemperature = "metric";
-  let apiKey = "0f129b9a789d17793d44ec3aef53281f";
-
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&units=${unitTemperature}&appid=${apiKey}`;
 
   axios.get(`${apiUrl}`).then(showWeatherToday);
@@ -109,8 +101,6 @@ document.querySelector("form").addEventListener("submit", showCity);
 function showLatitudeLongitude(positionLatitudeLongitude) {
   let currentLatitude = positionLatitudeLongitude.coords.latitude;
   let currentLongitude = positionLatitudeLongitude.coords.longitude;
-  let unitTemperature = "metric";
-  let apiKey = "0f129b9a789d17793d44ec3aef53281f";
 
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${currentLatitude}&lon=${currentLongitude}&units=${unitTemperature}&appid=${apiKey}`;
 
@@ -154,7 +144,14 @@ let celsiusButton = document.querySelector(".celsius");
 celsiusButton.addEventListener("click", convertCelsius);
 
 // Forecast
-function displayForecast() {
+function getForecast(coords) {
+  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lat}&exclude=current,minutely,hourly,alerts&units=${unitTemperature}&appid=${apiKey}`;
+  axios.get(`${apiUrl}`).then(displayForecast);
+}
+
+function displayForecast(response) {
+  console.log(response.data);
+
   let forecastElement = document.querySelector("#weather-forecast");
   let forecastHTML = `<div class="row">`;
 
@@ -179,4 +176,6 @@ function displayForecast() {
 
 // Basics
 let temperatureCelsius = null;
+let unitTemperature = "metric";
+let apiKey = "0f129b9a789d17793d44ec3aef53281f";
 showDefaultCity();
