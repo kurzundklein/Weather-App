@@ -149,24 +149,37 @@ function getForecast(coords) {
   axios.get(`${apiUrl}`).then(displayForecast);
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let dayForecast = date.getDay();
+  return days[dayForecast];
+}
+
 function displayForecast(response) {
-  console.log(response.data);
+  let forecast = response.data.daily;
+  console.log(forecast);
 
   let forecastElement = document.querySelector("#weather-forecast");
   let forecastHTML = `<div class="row">`;
 
-  let days = ["Tomorrow", "Monday", "Tuesday", "Wednesday"];
-
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-6">
-      ${day}
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 4) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-6">
+      ${formatDay(forecastDay.dt)}
       <div class="temperature">
-      28-<span class="temperature-max">26°C</span>
+      ${Math.round(
+        forecastDay.temp.min
+      )}-<span class="temperature-max">${Math.round(
+          forecastDay.temp.max
+        )}°C</span>
       </div>
-      <img src="" alt="" class="icon-today+1" />
+      <img src="http://openweathermap.org/img/wn/${
+        forecastDay.weather[0].icon
+      }@2x.png" alt="" class="icon-today+1" />
     </div>`;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
