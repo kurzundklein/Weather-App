@@ -23,16 +23,6 @@ h1 {
 #city {
   text-transform: capitalize;
 }
-button {
-  border: none;
-  background: #fff;
-  text-align: center;
-  width: 50px;
-}
-button:hover {
-  background: #abcbf1;
-  transition: ease-in-out 120ms;
-}
 .application {
   background: #dae3ec;
   border: solid 3px #fff;
