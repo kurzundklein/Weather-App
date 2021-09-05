@@ -23,23 +23,6 @@ h1 {
 #city {
   text-transform: capitalize;
 }
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.celsius:hover,
-.fahrenheit:hover {
-  border: 2px solid #abcbf1;
-  transition: ease-in-out 120ms;
-}
-.active {
-  border: 2px solid #abcbf1;
-}
-.active:hover {
-  cursor: default;
-  background-color: #fff;
-}
 button {
   border: none;
   background: #fff;

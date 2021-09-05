@@ -27,7 +27,7 @@ document.querySelector("#today").innerHTML = `${day}, ${hour}:${minutes}`;
 function showWeatherToday(response) {
   document.querySelector("#city").innerHTML = `${response.data.name}`;
 
-  temperatureCelsius = response.data.main.temp;
+  let temperatureCelsius = response.data.main.temp;
   document.querySelector("#temperature-today").innerHTML = `${Math.round(
     temperatureCelsius
   )} °C`;
@@ -115,34 +115,6 @@ function showCurrentCity(event) {
 
 document.querySelector(".current").addEventListener("click", showCurrentCity);
 
-//Fahrenheit & Celsius
-function convertFahrenheit(event) {
-  event.preventDefault;
-  let fahrenheitTemperature = (temperatureCelsius * 9) / 5 + 32;
-  document.querySelector("#temperature-today").innerHTML = `${Math.round(
-    fahrenheitTemperature
-  )} °F`;
-
-  fahrenheitButton.classList.add("active");
-  celsiusButton.classList.remove("active");
-}
-
-let fahrenheitButton = document.querySelector(".fahrenheit");
-fahrenheitButton.addEventListener("click", convertFahrenheit);
-
-function convertCelsius(event) {
-  event.preventDefault;
-  document.querySelector("#temperature-today").innerHTML = `${Math.round(
-    temperatureCelsius
-  )} °C`;
-
-  celsiusButton.classList.add("active");
-  fahrenheitButton.classList.remove("active");
-}
-
-let celsiusButton = document.querySelector(".celsius");
-celsiusButton.addEventListener("click", convertCelsius);
-
 // Forecast
 function getForecast(coords) {
   apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lat}&exclude=current,minutely,hourly,alerts&units=${unitTemperature}&appid=${apiKey}`;
@@ -157,13 +129,12 @@ function formatDay(timestamp) {
 
 function displayForecast(response) {
   let forecast = response.data.daily;
-  console.log(forecast);
 
   let forecastElement = document.querySelector("#weather-forecast");
   let forecastHTML = `<div class="row">`;
 
   forecast.forEach(function (forecastDay, index) {
-    if (index < 4) {
+    if (index > 0 && index < 5) {
       forecastHTML =
         forecastHTML +
         `<div class="col-6">
@@ -188,7 +159,6 @@ function displayForecast(response) {
 }
 
 // Basics
-let temperatureCelsius = null;
 let unitTemperature = "metric";
 let apiKey = "0f129b9a789d17793d44ec3aef53281f";
 showDefaultCity();
