@@ -43,32 +43,49 @@
           <button class="fahrenheit">°F</button>
         </div>
         <div class="row">
-          <div class="col-3 today">
-            <div>Today</div>
-            <div class="temperature-today" id="temperature-today"></div>
-            <img src="" alt="" class="icon-today" />
-          </div>
           <div class="col today">
+            <div>Today</div>
+            <div class="temperature" id="temperature-today"></div>
+            <img src="" alt="" class="icon-today" />
+            <div>
+              Last updated:
+              <span id="today" class="details"></span>
+            </div>
+            <div>
+              Wind speed:
+              <span id="windSpeed" class="details"></span>
+            </div>
+            <div>
+              Humidity:
+              <span id="humidity" class="details"></span>
+            </div>
+            <div>
+              Sky:
+              <span id="description" class="details"></span>
+            </div>
+          </div>
+          <div class="col coming-days">
             <div class="row">
               <div class="col">
-                Last updated
-                <div id="today" class="details"></div>
+                Tomorrow
+                <div class="temperature">
+                  28-<span class="temperature-max">26°C</span>
+                </div>
+                <img src="" alt="" class="icon-today+1" />
               </div>
+            </div>
+            <div class="row">
               <div class="col">
-                Wind
-                <div id="windSpeed" class="details"></div>
-              </div>
-              <div class="col">
-                Humidity
-                <div id="humidity" class="details"></div>
-              </div>
-              <div class="col">
-                Description
-                <div id="description" class="details"></div>
+                July 7th
+                <div class="temperature">
+                  34-<span class="temperature-max">26°C</span>
+                </div>
+                <img src="" alt="" class="icon-today+3" />
               </div>
             </div>
           </div>
         </div>
+
         <div class="row">
           <div class="col sunrise">
             The sun rises at
