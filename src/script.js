@@ -76,6 +76,8 @@ function showWeatherToday(response) {
   document.querySelector(
     "#sunsetTime"
   ).innerHTML = `${hourSunset}:${minutesSunset}`;
+
+  displayForecast();
 }
 
 //Default City
@@ -150,6 +152,30 @@ function convertCelsius(event) {
 
 let celsiusButton = document.querySelector(".celsius");
 celsiusButton.addEventListener("click", convertCelsius);
+
+// Forecast
+function displayForecast() {
+  let forecastElement = document.querySelector("#weather-forecast");
+  let forecastHTML = `<div class="row">`;
+
+  let days = ["Tomorrow", "Monday", "Tuesday", "Wednesday"];
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-6">
+      ${day}
+      <div class="temperature">
+      28-<span class="temperature-max">26°C</span>
+      </div>
+      <img src="" alt="" class="icon-today+1" />
+    </div>`;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+
+  forecastElement.innerHTML = forecastHTML;
+}
 
 // Basics
 let temperatureCelsius = null;
